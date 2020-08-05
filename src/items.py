@@ -1,4 +1,4 @@
-class Item:
+class Items:
     """docstring for Items"""
     def __init__(self, item_name, item_description):
         self.item_name = item_name

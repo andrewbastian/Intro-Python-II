@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-
+from items import Items
 # Declare all the rooms
 
 room = {
@@ -22,6 +22,15 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+# Declare Items
+
+item = {
+    'pen': Items('pen', 'Writes clearly and permanent, but is susceptible to heat.'),
+    'pencil': Items('pencil', 'Made of wood and graphite, this weapon provides users with the ability to undo work.'),
+    'keyboard': Items('keyboard', 'This implement is useless without a computer.'),
+    'lipstick': Items('lipstick', 'Crude and a little ominous-looking when used for writing.'),
+    'brush': Items('brush', 'Requires paint')
+}
 
 # Link rooms together
 
@@ -34,7 +43,9 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
+#Items Placed in room:
+room['outside'].items.append(item['keyboard'])
+
 # Main
 #
 
@@ -49,6 +60,7 @@ while True:
     print(f'You are now in {location.name_room}')
 # * Prints the current description (the textwrap module might be useful here).
     print(f'Looking around you see, {location.description_room} \n')
+    print(f'this room contains, \n{location.items}\n')
 # * Waits for user input and decides what to do.
 #
     print("What's yr next move?")
