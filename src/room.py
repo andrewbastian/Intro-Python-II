@@ -4,3 +4,4 @@ class Room:
     def __init__(self, name_room, description_room):
         self.name_room = name_room
         self.description_room = description_room
+        self.items = []
