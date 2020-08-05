@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,14 +39,55 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player_room = room['outside']
+player = Player(player_room)
 # Write a loop that:
+while True:
+    location = player.location
 #
 # * Prints the current room name
+    print(f'You are now in {location.name_room}')
 # * Prints the current description (the textwrap module might be useful here).
+    print(f'Looking around you see, {location.description_room} \n')
 # * Waits for user input and decides what to do.
 #
+    print("What's yr next move?")
+    print('Enter n, s, e, or w')
+    print('to quit type `q`\n')
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+    command = input('>').split(',')
+
+    if command[0] == 'n':
+        if hasattr(location, 'n_to'):
+            print("\nWalk North")
+            player.location = location.n_to
+        else:
+            print('Not a valid more, try again \n')
+
+    elif command[0] == 's':
+        if hasattr(location, 's_to'):
+            print('\nWalk south')
+            player.location = location.s_to
+        else:
+            print('Not a valid more, try again \n')
+
+    elif command[0] == 'w':
+        if hasattr(location, 'w_to'):
+            print('\nWalk west')
+            player.location = location.w_to
+        else:
+            print('Not a valid more, try again \n')
+
+    elif command[0] == 'e':
+        if hasattr(location, 'e_to'):
+            print('\nWalk east')
+            player.location = location.e_to
+        else:
+            print('Not a valid more, try again \n')
+
+    elif command[0] == 'q':
+        print('yr a quitter \n')
+        exit()
